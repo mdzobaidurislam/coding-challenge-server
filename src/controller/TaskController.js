@@ -6,7 +6,7 @@ exports.createTask = (req, res) => {
     name,
     sector: sectId,
     agree,
-    createdBy: req.user._id,
+    createdBy: "63d15d41a99a5c05152cd424",
   });
 
   task.save((err, task) => {
@@ -18,7 +18,7 @@ exports.createTask = (req, res) => {
 };
 
 exports.getTasks = async (req, res) => {
-  const tasks = await Task.find({ createdBy: req.user._id })
+  const tasks = await Task.find({ createdBy: "63d15d41a99a5c05152cd424" })
     .select("_id name sector agree")
     .populate({ path: "sector.sectorId", select: "_id name parentId" })
     .exec();
@@ -29,7 +29,10 @@ exports.editTasks = async (req, res) => {
   const id = req.params.id;
 
   if (id) {
-    const task = await Task.findOne({ _id: id, createdBy: req.user._id })
+    const task = await Task.findOne({
+      _id: id,
+      createdBy: "63d15d41a99a5c05152cd424",
+    })
       .select("_id name sector agree")
       .populate({ path: "sector.sectorId", select: "_id name parentId" })
       .exec();
@@ -46,7 +49,10 @@ exports.updateTaskById = async (req, res) => {
   const id = req.params.id;
 
   if (id) {
-    const task = await Task.findOne({ _id: id, createdBy: req.user._id });
+    const task = await Task.findOne({
+      _id: id,
+      createdBy: "63d15d41a99a5c05152cd424",
+    });
     if (task) {
       task.name = req.body.name;
       task.agree = req.body.agree;

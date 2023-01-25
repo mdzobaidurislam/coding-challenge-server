@@ -9,11 +9,11 @@ const {
 const router = express.Router();
 const { requireSignin, userMiddleware } = require("../middleware");
 
-router.post("/task/", requireSignin, userMiddleware, createTask);
+router.post("/task/",  createTask);
 
-router.get("/task/", requireSignin, userMiddleware, getTasks);
-router.get("/task/:id", requireSignin, userMiddleware, editTasks);
-router.delete("/task/:id", requireSignin, userMiddleware, deleteTaskById);
-router.put("/task/:id", requireSignin, userMiddleware, updateTaskById);
+router.get("/task/",  getTasks);
+router.get("/task/:id",  editTasks);
+router.delete("/task/:id",  deleteTaskById);
+router.put("/task/:id",  updateTaskById);
 
 module.exports = router;
